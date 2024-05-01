@@ -80,13 +80,30 @@ def load_user(user_id):
 "<----------------- Google Auth ----------------->"
 
 google = oauth.register(
-
+    name='google',
+    client_id= "",
+    client_secret= "",
+    access_token_url='https://accounts.google.com/o/oauth2/token',
+    access_token_params=None,
+    authorize_url='https://accounts.google.com/o/oauth2/auth',
+    authorize_params=None,
+    api_base_url='https://www.googleapis.com/oauth2/v1/',
+    userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',
+    client_kwargs={'scope': 'openid email profile'},
 )
 
 "<----------------- GitHub Auth ----------------->"
 
 github = oauth.register (
-
+  name = 'github',
+    client_id = "",
+    client_secret = "",
+    access_token_url = 'https://github.com/login/oauth/access_token',
+    access_token_params = None,
+    authorize_url = 'https://github.com/login/oauth/authorize',
+    authorize_params = None,
+    api_base_url = 'https://api.github.com/',
+    client_kwargs = {'scope': 'user:email'},
 )
 
 "<----------------- Main --------------->"
@@ -174,7 +191,8 @@ def forgot():
         emailTo = request.form['email']
         if Accounts.query.filter_by(email=emailTo).first():
             email = Accounts.query.filter_by(email=emailTo).first()
-            
+            email_sender = ''
+            email_password = ''
             codeList = []
             for i in range(6):
                 codeList.append(random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]))
