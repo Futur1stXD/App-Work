@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+.linebreak {
+        color: gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        margin: 40px auto;
+        white-space:nowrap
+}
+
+.linebreak::after, .linebreak::before {
+    content: "";
+    display: inline-block;
+    width: 40%;
+    height: 1px;
+    margin: 0 8px;
+    background-color:gray;
+}
